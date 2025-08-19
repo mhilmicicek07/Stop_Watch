@@ -1,60 +1,70 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Courier New', Courier, monospace;
 }
 
-body{
+body {
     height: 100vh;
-    overflow: hidden;
     background-color: #7D2AE8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.wrapper{
-    height: 100vh;
+.wrapper {
     display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
-    gap: 20px;
-    user-select: none; /* kullanıcının seçmesinin engellenmesi */
-}
-
-.wrapper .time{
-    height: 9vh;
-    display: flex;
     align-items: center;
-    justify-content: center;
-    border-radius: 5px;
-    box-shadow: 10px 10px 20px rgba(0,0,0,0.3);
-    padding: 0 10px;
-    background-color: azure;
+    gap: 20px;
+    user-select: none;
 }
 
-.wrapper .time span{
-    text-align: center;
+.time {
+    background-color: azure;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
     font-size: 2rem;
     font-weight: 600;
 }
 
-.time span.colon{
-    width: 30px;
-}
-
-.wrapper button {
-    outline: none;
-    border: 0;
-    margin: 0 10px;
-    box-shadow: 10px 10px 20px rgba(0,0,0,0.3);
+.buttons button {
+    margin: 0 5px;
     padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
     font-weight: 600;
     text-transform: uppercase;
     cursor: pointer;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Pasif buton görünümü */
+.buttons button:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Lap listesi */
+.laps {
+    margin-top: 20px;
+    width: 250px;
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: rgba(255,255,255,0.1);
+    padding: 10px;
     border-radius: 5px;
 }
 
-.buttons button.active{
-    cursor: not-allowed;
-    opacity: 0.7;
+.laps ul {
+    list-style: none;
+}
+
+.laps li {
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    font-size: 1rem;
+    color: white;
 }

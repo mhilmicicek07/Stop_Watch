@@ -1,84 +1,89 @@
-// button variables
-const startButton = document.querySelector("#button-start"),
- stopButton = document.querySelector("#button-stop"),
- resetButton = document.querySelector("#button-reset");
+// Button selectors
+const startBtn = document.querySelector("#start"),
+      stopBtn = document.querySelector("#stop"),
+      resetBtn = document.querySelector("#reset"),
+      lapBtn = document.querySelector("#lap");
 
-//display variable
-const miliSecond = document.querySelector(".milisecond"),
- second = document.querySelector(".second"),
- minute = document.querySelector(".minute"),
- hour = document.querySelector(".hour");
+// Display selectors
+const hourEl = document.querySelector(".hour"),
+      minuteEl = document.querySelector(".minute"),
+      secondEl = document.querySelector(".second"),
+      millisecondEl = document.querySelector(".millisecond"),
+      lapsList = document.querySelector("#laps-list");
 
-// variables
-let hr = "0" + 0;
-let min = "0" + 0;
-let sec = "0" + 0;
-let ms = "0" + 0;
+// Time variables
+let hr = 0, min = 0, sec = 0, ms = 0;
+let interval;
+let running = false; // Kronometre durumu
 
-let startTimer;
-
-function putValue () {
-    miliSecond.innerText = ms;
-    second.innerText = sec;
-    minute.innerText = min;
-    hour.innerText = hr;
+// Update display
+function updateDisplay() {
+    hourEl.innerText = String(hr).padStart(2,'0');
+    minuteEl.innerText = String(min).padStart(2,'0');
+    secondEl.innerText = String(sec).padStart(2,'0');
+    millisecondEl.innerText = String(ms).padStart(2,'0');
 }
 
+// Update button states
+function updateButtons() {
+    startBtn.disabled = running;             // Start kronometre çalışıyorsa pasif
+    stopBtn.disabled = !running;             // Stop kronometre çalışıyorsa aktif
+    lapBtn.disabled = !running;              // Lap kronometre çalışıyorsa aktif
+    resetBtn.disabled = running ? true : false; // Kronometre çalışıyorsa reset pasif, durduğunda aktif
+}
+
+// Start kronometre
 function start() {
-    startButton.classList.add("active");
-    stopButton.classList.remove("active");
-    resetButton.classList.add("active");
+    if(running) return;
+    running = true;
+    updateButtons();
 
-    startTimer = setInterval(() => {
-        ms++;
-        ms < 10 ? (ms = "0" + ms) : (ms = ms);
-        if(ms == 100){
-            sec++;
-            sec < 10 ? (sec = "0" + sec) : (sec = sec);
-            ms = "0" + 0;
-        }
-
-        if(sec == 60) {
-            min++;
-            min < 10 ? (min = "0" + min) : (min = min);
-            sec = "0" + 0;
-        }
-
-        if(min == 60) {
-            hr++;
-            hr < 10 ? (hr = "0" + hr) : (hr = hr);
-            min = "0" + 0;
-        }
-
-        putValue ();
-    }, 10); // 0.01 saniyede bir güncelleme saniyede 10 güncelleme
+    interval = setInterval(() => {
+        ms += 1;
+        if(ms === 100){ ms = 0; sec += 1; }
+        if(sec === 60){ sec = 0; min += 1; }
+        if(min === 60){ min = 0; hr += 1; }
+        updateDisplay();
+    }, 10);
 }
 
+// Stop kronometre
 function stop() {
-    startButton.classList.remove("active");
-    stopButton.classList.add("active");
-    resetButton.classList.remove("active");
-
-    clearInterval(startTimer);
+    if(!running) return;
+    running = false;
+    clearInterval(interval);
+    updateButtons();
 }
+
+// Reset kronometre
 function reset() {
-    startButton.classList.remove("active");
-    stopButton.classList.add("active");
-    resetButton.classList.remove("active");
-
-    hr = "0" + 0;
-    min = "0" + 0;
-    sec = "0" + 0;
-    ms = "0" + 0;
-
-    putValue();
+    if(running) return; // start çalışıyorsa reset pasif
+    hr = 0; min = 0; sec = 0; ms = 0;
+    updateDisplay();
+    lapsList.innerHTML = "";
 }
 
-// start button active class'ına sahip ise reset butonunun yaptığı işlemi engellemek gerek.
+// Add lap
+function addLap() {
+    if(!running) return; // start pasifse lap çalışmasın
+    const lapTime = `${String(hr).padStart(2,'0')}:${String(min).padStart(2,'0')}:${String(sec).padStart(2,'0')}:${String(ms).padStart(2,'0')}`;
+    const li = document.createElement("li");
+    li.innerText = lapTime;
+    lapsList.prepend(li);  // En üstte olacak şekilde ekleme
+}
 
-startButton.addEventListener("click", start);
-stopButton.addEventListener("click", stop);
-resetButton.addEventListener("click", reset);
+// Event listeners
+startBtn.addEventListener("click", start);
+stopBtn.addEventListener("click", stop);
+resetBtn.addEventListener("click", reset);
+lapBtn.addEventListener("click", addLap);
+
+// Sayfa yüklenince buton durumunu başlat
+running = false;        // Kronometre başlangıçta duruyor
+startBtn.disabled = false;   // Start aktif
+stopBtn.disabled = true;     // Stop pasif
+lapBtn.disabled = true;      // Lap pasif
+resetBtn.disabled = true;    // Reset pasif
 
 // ternory operator
 // koşul ? doğruysa ne yapılacak : yanlışsa ne yapılacak ; (ternory operatörü react)
