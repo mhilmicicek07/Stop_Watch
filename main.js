@@ -16,6 +16,10 @@ let hr = 0, min = 0, sec = 0, ms = 0;
 let interval;
 let running = false; // Kronometre durumu
 
+function hasElapsedData() {
+    return hr !== 0 || min !== 0 || sec !== 0 || ms !== 0 || lapsList.childElementCount > 0;
+}
+
 // Update display
 function updateDisplay() {
     hourEl.innerText = String(hr).padStart(2,'0');
@@ -26,10 +30,11 @@ function updateDisplay() {
 
 // Update button states
 function updateButtons() {
-    startBtn.disabled = running;             // Start kronometre çalışıyorsa pasif
-    stopBtn.disabled = !running;             // Stop kronometre çalışıyorsa aktif
-    lapBtn.disabled = !running;              // Lap kronometre çalışıyorsa aktif
-    resetBtn.disabled = running ? true : false; // Kronometre çalışıyorsa reset pasif, durduğunda aktif
+    const hasData = hasElapsedData();
+    startBtn.disabled = running;                 // Start kronometre çalışıyorsa pasif
+    stopBtn.disabled = !running;                 // Stop kronometre çalışıyorsa aktif
+    lapBtn.disabled = !running;                  // Lap kronometre çalışıyorsa aktif
+    resetBtn.disabled = running || !hasData;     // Yalnızca çalışma durduğunda ve veri olduğunda aktif
 }
 
 // Start kronometre
@@ -61,6 +66,7 @@ function reset() {
     hr = 0; min = 0; sec = 0; ms = 0;
     updateDisplay();
     lapsList.innerHTML = "";
+    updateButtons();
 }
 
 // Add lap
@@ -78,12 +84,6 @@ stopBtn.addEventListener("click", stop);
 resetBtn.addEventListener("click", reset);
 lapBtn.addEventListener("click", addLap);
 
-// Sayfa yüklenince buton durumunu başlat
-running = false;        // Kronometre başlangıçta duruyor
-startBtn.disabled = false;   // Start aktif
-stopBtn.disabled = true;     // Stop pasif
-lapBtn.disabled = true;      // Lap pasif
-resetBtn.disabled = true;    // Reset pasif
-
-// ternory operator
-// koşul ? doğruysa ne yapılacak : yanlışsa ne yapılacak ; (ternory operatörü react)
+// Sayfa yüklenince buton ve ekran durumunu başlat
+updateDisplay();
+updateButtons();
