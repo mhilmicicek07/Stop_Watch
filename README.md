@@ -13,6 +13,7 @@ Basit, kullanımı kolay ve tarayıcı üzerinde çalışan bir Kronometre (Stop
 - ▶️ Başlat / Durdur
 - ⏸️ Duraklatma — durdurduktan sonra kaldığı yerden devam eder
 - 🔁 Sıfırlama
+- 🏁 Tur (Lap) kaydetme, son tur en üstte görünür
 - ⏱️ Milisaniye, saniye ve dakika gösterimi
 - 💻 Hafif ve modern kullanıcı arayüzü
 
@@ -25,7 +26,7 @@ Basit, kullanımı kolay ve tarayıcı üzerinde çalışan bir Kronometre (Stop
 Stop_Watch/
 ├── index.html  
 ├── style.css  
-├── script.js  
+├── main.js  
 └── README.md
 
 ### Kurulum ve Çalıştırma
@@ -61,6 +62,7 @@ A simple, easy-to-use browser-based Stop Watch application built with HTML, CSS 
 - ▶️ Start / Stop
 - ⏸️ Pause/Resume — stops and continues from the same time
 - 🔁 Reset
+- 🏁 Lap recording, newest lap appears first
 - ⏱️ Shows minutes, seconds and milliseconds
 - 💻 Lightweight, modern UI
 
@@ -72,8 +74,8 @@ A simple, easy-to-use browser-based Stop Watch application built with HTML, CSS 
 ### Project Structure
 Stop_Watch/  
 ├── index.html  
-��── style.css  
-├── script.js  
+├── style.css  
+├── main.js  
 └── README.md
 
 ### Installation & Run
@@ -109,6 +111,7 @@ Eine einfache, benutzerfreundliche Stoppuhr-Anwendung, die im Browser läuft. En
 - ▶️ Start / Stopp
 - ⏸️ Pause / Fortsetzen — hält an und setzt an der gleichen Stelle fort
 - 🔁 Zurücksetzen
+- 🏁 Runden (Lap) speichern, neueste Runde steht oben
 - ⏱️ Anzeige von Minuten, Sekunden und Millisekunden
 - 💻 Leichtgewichtiges, modernes UI
 
@@ -121,7 +124,7 @@ Eine einfache, benutzerfreundliche Stoppuhr-Anwendung, die im Browser läuft. En
 Stop_Watch/  
 ├── index.html  
 ├── style.css  
-├── script.js  
+├── main.js  
 └── README.md
 
 ### Installation & Ausführen
