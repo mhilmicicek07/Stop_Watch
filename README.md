@@ -14,7 +14,7 @@ Basit, kullanımı kolay ve tarayıcı üzerinde çalışan bir Kronometre (Stop
 - ⏸️ Duraklatma — durdurduktan sonra kaldığı yerden devam eder
 - 🔁 Sıfırlama
 - 🏁 Tur (Lap) kaydetme, son tur en üstte görünür
-- ⏱️ Milisaniye, saniye ve dakika gösterimi
+- ⏱️ Saat, dakika, saniye ve milisaniye gösterimi (SS:DD:SS:ms)
 - 💻 Hafif ve modern kullanıcı arayüzü
 
 ### Kullanılan Teknolojiler
@@ -63,7 +63,7 @@ A simple, easy-to-use browser-based Stop Watch application built with HTML, CSS 
 - ⏸️ Pause/Resume — stops and continues from the same time
 - 🔁 Reset
 - 🏁 Lap recording, newest lap appears first
-- ⏱️ Shows minutes, seconds and milliseconds
+- ⏱️ Shows hours, minutes, seconds and milliseconds (HH:MM:SS:ms)
 - 💻 Lightweight, modern UI
 
 ### Technologies
@@ -112,7 +112,7 @@ Eine einfache, benutzerfreundliche Stoppuhr-Anwendung, die im Browser läuft. En
 - ⏸️ Pause / Fortsetzen — hält an und setzt an der gleichen Stelle fort
 - 🔁 Zurücksetzen
 - 🏁 Runden (Lap) speichern, neueste Runde steht oben
-- ⏱️ Anzeige von Minuten, Sekunden und Millisekunden
+- ⏱️ Anzeige von Stunden, Minuten, Sekunden und Millisekunden (SS:MM:SS:ms)
 - 💻 Leichtgewichtiges, modernes UI
 
 ### Technologien
